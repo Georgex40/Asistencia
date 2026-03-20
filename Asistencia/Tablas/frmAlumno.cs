@@ -19,7 +19,7 @@ namespace Asistencia.Tablas
         public frmAlumno(string noCtrl, string nombre, string apPaterno, string apMaterno, string semestre)
         {
             InitializeComponent();
-            txtNoControl.Text = noCtrl;
+            txtNoControl.Text = noCtrl; 
             txtNombre.Text = nombre;
             txtAppat.Text = apPaterno;
             txtApmat.Text = apMaterno;
@@ -33,8 +33,8 @@ namespace Asistencia.Tablas
             if (updating == false)
             {
                 bool resultado = dt.ejecutarComando(
-                    $"Insert into Alumnos (No_Control,Nombre,ApPat,ApMat,Semestre)" +
-                    $"values ('{txtNoControl.Text}','{txtNombre.Text}','{txtAppat.Text}','{txtApmat.Text}','{txtSemestre.Text})");
+                    $"Insert into Alumnos (NoControl,Nombre,Appat,Apmat,Semestre)" +
+                    $"values ('{txtNoControl.Text}','{txtNombre.Text}','{txtAppat.Text}','{txtApmat.Text}','{txtSemestre.Text}')");
                 if (resultado)
                 {
                     MessageBox.Show("Alumno Registrado correctamente");
@@ -48,8 +48,8 @@ namespace Asistencia.Tablas
             else
             {
                 bool resultado = dt.ejecutarComando(
-                    $"Update Alumnos set Nombre='{txtNombre.Text}',ApPat='{txtAppat.Text}',ApMat='{txtApmat.Text},Semestre='{txtSemestre}''" +
-                    $"where No_Control={txtNoControl.Text}");
+                    $"Update Alumnos set Nombre='{txtNombre.Text}',Appat='{txtAppat.Text}',Apmat='{txtApmat.Text}',Semestre='{txtSemestre.Text}'" +
+                    $"where NoControl='{txtNoControl.Text}'");
                 if (resultado)
                 {
                     MessageBox.Show("Informacion del alumno Actualizada");
@@ -60,11 +60,6 @@ namespace Asistencia.Tablas
                     MessageBox.Show("Error al actualizar al Alumno");
                 }
             }
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
 
         }
     }

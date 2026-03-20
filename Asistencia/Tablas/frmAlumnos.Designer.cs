@@ -1,6 +1,6 @@
 ﻿namespace Asistencia.Tablas
 {
-    partial class frmAlmunos
+    partial class frmAlumnos
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             splitContainer1 = new SplitContainer();
             label5 = new Label();
             label4 = new Label();
@@ -40,11 +41,14 @@
             txtNoControl = new TextBox();
             btnAgregar = new Button();
             dgvBusquedaAl = new DataGridView();
+            cmsAlumnos = new ContextMenuStrip(components);
+            eliminarToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBusquedaAl).BeginInit();
+            cmsAlumnos.SuspendLayout();
             SuspendLayout();
             // 
             // splitContainer1
@@ -69,24 +73,25 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(dgvBusquedaAl);
-            splitContainer1.Size = new Size(800, 450);
-            splitContainer1.SplitterDistance = 335;
+            splitContainer1.Size = new Size(898, 450);
+            splitContainer1.SplitterDistance = 360;
             splitContainer1.TabIndex = 1;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(33, 41);
+            label5.Location = new Point(41, 35);
             label5.Name = "label5";
             label5.Size = new Size(142, 37);
             label5.TabIndex = 9;
             label5.Text = "Busqueda";
+
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(33, 256);
+            label4.Location = new Point(41, 250);
             label4.Name = "label4";
             label4.Size = new Size(99, 15);
             label4.TabIndex = 8;
@@ -95,7 +100,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(33, 198);
+            label3.Location = new Point(41, 192);
             label3.Name = "label3";
             label3.Size = new Size(95, 15);
             label3.TabIndex = 7;
@@ -104,7 +109,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(33, 143);
+            label2.Location = new Point(41, 137);
             label2.Name = "label2";
             label2.Size = new Size(51, 15);
             label2.TabIndex = 6;
@@ -113,7 +118,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(33, 93);
+            label1.Location = new Point(41, 87);
             label1.Name = "label1";
             label1.Size = new Size(110, 15);
             label1.TabIndex = 5;
@@ -121,28 +126,31 @@
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(33, 161);
+            txtNombre.Location = new Point(41, 155);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(267, 23);
             txtNombre.TabIndex = 4;
+            txtNombre.TextChanged += txtNombre_TextChanged;
             // 
             // txtApmat
             // 
-            txtApmat.Location = new Point(33, 274);
+            txtApmat.Location = new Point(41, 268);
             txtApmat.Name = "txtApmat";
             txtApmat.Size = new Size(267, 23);
             txtApmat.TabIndex = 3;
+            txtApmat.TextChanged += txtApmat_TextChanged;
             // 
             // txtAppat
             // 
-            txtAppat.Location = new Point(33, 216);
+            txtAppat.Location = new Point(41, 210);
             txtAppat.Name = "txtAppat";
             txtAppat.Size = new Size(267, 23);
             txtAppat.TabIndex = 2;
+            txtAppat.TextChanged += txtAppat_TextChanged;
             // 
             // txtNoControl
             // 
-            txtNoControl.Location = new Point(33, 111);
+            txtNoControl.Location = new Point(41, 105);
             txtNoControl.Name = "txtNoControl";
             txtNoControl.Size = new Size(267, 23);
             txtNoControl.TabIndex = 1;
@@ -150,7 +158,7 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(114, 348);
+            btnAgregar.Location = new Point(122, 342);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(122, 33);
             btnAgregar.TabIndex = 0;
@@ -163,18 +171,32 @@
             dgvBusquedaAl.AllowUserToAddRows = false;
             dgvBusquedaAl.AllowUserToDeleteRows = false;
             dgvBusquedaAl.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvBusquedaAl.ContextMenuStrip = cmsAlumnos;
             dgvBusquedaAl.Dock = DockStyle.Fill;
             dgvBusquedaAl.Location = new Point(0, 0);
             dgvBusquedaAl.Name = "dgvBusquedaAl";
             dgvBusquedaAl.ReadOnly = true;
-            dgvBusquedaAl.Size = new Size(461, 450);
+            dgvBusquedaAl.Size = new Size(534, 450);
             dgvBusquedaAl.TabIndex = 0;
+            dgvBusquedaAl.CellContentDoubleClick += dgvBusquedaAl_CellContentDoubleClick;
+            // 
+            // cmsAlumnos
+            // 
+            cmsAlumnos.Items.AddRange(new ToolStripItem[] { eliminarToolStripMenuItem });
+            cmsAlumnos.Name = "cmsAlumnos";
+            cmsAlumnos.Size = new Size(118, 26);
+            // 
+            // eliminarToolStripMenuItem
+            // 
+            eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            eliminarToolStripMenuItem.Size = new Size(117, 22);
+            eliminarToolStripMenuItem.Text = "Eliminar";
             // 
             // frmAlmunos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(898, 450);
             Controls.Add(splitContainer1);
             Name = "frmAlmunos";
             Text = "Lista de Alumnos";
@@ -185,6 +207,7 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvBusquedaAl).EndInit();
+            cmsAlumnos.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -201,5 +224,7 @@
         private TextBox txtApmat;
         private TextBox txtAppat;
         private TextBox txtNoControl;
+        private ContextMenuStrip cmsAlumnos;
+        private ToolStripMenuItem eliminarToolStripMenuItem;
     }
 }

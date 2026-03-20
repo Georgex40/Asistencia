@@ -121,7 +121,7 @@
             txtSemestre.Name = "txtSemestre";
             txtSemestre.Size = new Size(99, 23);
             txtSemestre.TabIndex = 9;
-            txtSemestre.TextChanged += textBox1_TextChanged;
+
             // 
             // label5
             // 

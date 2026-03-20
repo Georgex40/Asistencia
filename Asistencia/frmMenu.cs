@@ -18,13 +18,14 @@ namespace Asistencia
         private void alumnosToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            frmAlmunos Alumnos = new frmAlmunos();
+            frmAlumnos Alumnos = new frmAlumnos();
             Alumnos.ShowDialog();
         }
 
         private void importarAlumnosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmImportar importar= new frmImportar();
+            importar.ShowDialog();
         }
     }
 }

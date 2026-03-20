@@ -10,7 +10,7 @@ namespace Asistencia
     internal class Datos
     {
             //Generar cadena de conexión
-            string cadenaConexión = "server=localhost;user=luis;pwd=joseluis;DataBase=asistencia";
+            string cadenaConexión = "server=localhost;user=luis;pwd=joseluis;DataBase=asistencia;port=3307";
             MySqlConnection conexion;
 
             private void Conectar()
@@ -25,6 +25,7 @@ namespace Asistencia
                     Console.WriteLine(ex.Message);
                 }
             }
+
             private void Desconectar()
             {
                 try
