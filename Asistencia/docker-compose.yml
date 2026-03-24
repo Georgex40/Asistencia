@@ -2,7 +2,7 @@ services:
   mysql:
     image: mysql:latest
     command: --bind-address=0.0.0.0
-    container_name: mysql_sever
+    container_name: asistencia
     restart: always
     environment:
      MYSQL_ROOT_PASSWORD: joseluis

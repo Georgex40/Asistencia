@@ -86,7 +86,6 @@
             label5.Size = new Size(142, 37);
             label5.TabIndex = 9;
             label5.Text = "Busqueda";
-
             // 
             // label4
             // 
@@ -192,13 +191,15 @@
             eliminarToolStripMenuItem.Size = new Size(117, 22);
             eliminarToolStripMenuItem.Text = "Eliminar";
             // 
-            // frmAlmunos
+            // frmAlumnos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.CadetBlue;
             ClientSize = new Size(898, 450);
             Controls.Add(splitContainer1);
-            Name = "frmAlmunos";
+            Name = "frmAlumnos";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Lista de Alumnos";
             Activated += frmAlmunos_Activated;
             splitContainer1.Panel1.ResumeLayout(false);

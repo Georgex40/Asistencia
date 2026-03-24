@@ -121,7 +121,6 @@
             txtSemestre.Name = "txtSemestre";
             txtSemestre.Size = new Size(99, 23);
             txtSemestre.TabIndex = 9;
-
             // 
             // label5
             // 
@@ -136,6 +135,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.GradientActiveCaption;
             ClientSize = new Size(386, 343);
             Controls.Add(label5);
             Controls.Add(txtSemestre);
@@ -149,6 +149,7 @@
             Controls.Add(txtNoControl);
             Controls.Add(btnAceptar);
             Name = "frmAlumno";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Alumno";
             ResumeLayout(false);
             PerformLayout();

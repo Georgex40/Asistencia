@@ -18,6 +18,23 @@ namespace Asistencia.Tablas
         {
             InitializeComponent();
         }
+        private void nulo()
+        {
+            if (txtNoControl.Text == "" && txtNombre.Text == "" && txtAppat.Text == "" && txtApmat.Text == "")
+            {
+                try
+                {
+                    ds = ct.ejecutar("SELECT * from Alumnos");
+                    if (ds != null)
+                    {
+                        dgvBusquedaAl.DataSource = ds.Tables[0];
+                    }
+                }
+                catch (Exception ex)
+                { }
+            }
+
+        }
 
         private void txtNoControl_TextChanged(object sender, EventArgs e)
         {
@@ -44,6 +61,7 @@ namespace Asistencia.Tablas
                 txtNombre.Enabled = true;
                 txtAppat.Enabled = true;
                 txtApmat.Enabled = true;
+                nulo();
             }
         }
 
@@ -94,6 +112,8 @@ namespace Asistencia.Tablas
                 txtNoControl.Enabled = true;
                 txtAppat.Enabled = true;
                 txtApmat.Enabled = true;
+                nulo();
+
             }
         }
 
@@ -123,6 +143,8 @@ namespace Asistencia.Tablas
                 txtNoControl.Enabled = true;
                 txtNombre.Enabled = true;
                 txtApmat.Enabled = true;
+                nulo();
+
             }
         }
 
@@ -152,6 +174,8 @@ namespace Asistencia.Tablas
                 txtNoControl.Enabled = true;
                 txtNombre.Enabled = true;
                 txtAppat.Enabled = true;
+                nulo();
+
             }
 
         }

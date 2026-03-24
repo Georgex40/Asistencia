@@ -1,9 +1,13 @@
 using Asistencia.Tablas;
+using System.Data;
 
 namespace Asistencia
 {
     public partial class frmMenu : Form
     {
+        bool updating = false;
+        Datos dt = new Datos();
+
         public frmMenu()
         {
             InitializeComponent();
@@ -13,6 +17,7 @@ namespace Asistencia
         {
             frmRegistros Registros = new frmRegistros();
             Registros.ShowDialog();
+
         }
 
         private void alumnosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -23,9 +28,8 @@ namespace Asistencia
         }
 
         private void importarAlumnosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmImportar importar= new frmImportar();
-            importar.ShowDialog();
+        { 
         }
+
     }
 }
