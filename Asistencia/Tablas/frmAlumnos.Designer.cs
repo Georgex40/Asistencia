@@ -30,6 +30,10 @@
         {
             components = new System.ComponentModel.Container();
             splitContainer1 = new SplitContainer();
+            label6 = new Label();
+            txtSemestre = new TextBox();
+            menuStrip1 = new MenuStrip();
+            importarToolStripMenuItem = new ToolStripMenuItem();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
@@ -43,10 +47,12 @@
             dgvBusquedaAl = new DataGridView();
             cmsAlumnos = new ContextMenuStrip(components);
             eliminarToolStripMenuItem = new ToolStripMenuItem();
+            ofdImportar = new OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
+            menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBusquedaAl).BeginInit();
             cmsAlumnos.SuspendLayout();
             SuspendLayout();
@@ -59,6 +65,9 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(label6);
+            splitContainer1.Panel1.Controls.Add(txtSemestre);
+            splitContainer1.Panel1.Controls.Add(menuStrip1);
             splitContainer1.Panel1.Controls.Add(label5);
             splitContainer1.Panel1.Controls.Add(label4);
             splitContainer1.Panel1.Controls.Add(label3);
@@ -76,6 +85,39 @@
             splitContainer1.Size = new Size(898, 450);
             splitContainer1.SplitterDistance = 360;
             splitContainer1.TabIndex = 1;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(41, 305);
+            label6.Name = "label6";
+            label6.Size = new Size(55, 15);
+            label6.TabIndex = 12;
+            label6.Text = "Semestre";
+            // 
+            // txtSemestre
+            // 
+            txtSemestre.Location = new Point(41, 323);
+            txtSemestre.Name = "txtSemestre";
+            txtSemestre.Size = new Size(100, 23);
+            txtSemestre.TabIndex = 11;
+            txtSemestre.TextChanged += txtSemestre_TextChanged;
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { importarToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(360, 24);
+            menuStrip1.TabIndex = 10;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // importarToolStripMenuItem
+            // 
+            importarToolStripMenuItem.Name = "importarToolStripMenuItem";
+            importarToolStripMenuItem.Size = new Size(65, 20);
+            importarToolStripMenuItem.Text = "Importar";
+            importarToolStripMenuItem.Click += importarToolStripMenuItem_Click;
             // 
             // label5
             // 
@@ -157,7 +199,7 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(122, 342);
+            btnAgregar.Location = new Point(120, 368);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(122, 33);
             btnAgregar.TabIndex = 0;
@@ -191,6 +233,10 @@
             eliminarToolStripMenuItem.Size = new Size(117, 22);
             eliminarToolStripMenuItem.Text = "Eliminar";
             // 
+            // ofdImportar
+            // 
+            ofdImportar.FileName = "";
+            // 
             // frmAlumnos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -207,6 +253,8 @@
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBusquedaAl).EndInit();
             cmsAlumnos.ResumeLayout(false);
             ResumeLayout(false);
@@ -227,5 +275,10 @@
         private TextBox txtNoControl;
         private ContextMenuStrip cmsAlumnos;
         private ToolStripMenuItem eliminarToolStripMenuItem;
+        private OpenFileDialog ofdImportar;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem importarToolStripMenuItem;
+        private TextBox txtSemestre;
+        private Label label6;
     }
 }

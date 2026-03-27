@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,6 +7,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Asistencia.Tablas;
+using OfficeOpenXml;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Asistencia.Tablas
@@ -52,6 +54,7 @@ namespace Asistencia.Tablas
                     txtNombre.Enabled = false;
                     txtAppat.Enabled = false;
                     txtApmat.Enabled = false;
+                    txtSemestre.Enabled = false;
                 }
                 catch (Exception ex)
                 { }
@@ -61,6 +64,7 @@ namespace Asistencia.Tablas
                 txtNombre.Enabled = true;
                 txtAppat.Enabled = true;
                 txtApmat.Enabled = true;
+                txtSemestre.Enabled = true;
                 nulo();
             }
         }
@@ -103,6 +107,7 @@ namespace Asistencia.Tablas
                     txtNoControl.Enabled = false;
                     txtAppat.Enabled = false;
                     txtApmat.Enabled = false;
+                    txtSemestre.Enabled = false;
                 }
                 catch (Exception ex)
                 { }
@@ -112,6 +117,7 @@ namespace Asistencia.Tablas
                 txtNoControl.Enabled = true;
                 txtAppat.Enabled = true;
                 txtApmat.Enabled = true;
+                txtSemestre.Enabled = true;
                 nulo();
 
             }
@@ -134,6 +140,7 @@ namespace Asistencia.Tablas
                     txtNoControl.Enabled = false;
                     txtNombre.Enabled = false;
                     txtApmat.Enabled = false;
+                    txtSemestre.Enabled = false;
                 }
                 catch (Exception ex)
                 { }
@@ -143,6 +150,7 @@ namespace Asistencia.Tablas
                 txtNoControl.Enabled = true;
                 txtNombre.Enabled = true;
                 txtApmat.Enabled = true;
+                txtSemestre.Enabled = true;
                 nulo();
 
             }
@@ -165,6 +173,7 @@ namespace Asistencia.Tablas
                     txtNoControl.Enabled = false;
                     txtNombre.Enabled = false;
                     txtAppat.Enabled = false;
+                    txtSemestre.Enabled = false;
                 }
                 catch (Exception ex)
                 { }
@@ -174,6 +183,7 @@ namespace Asistencia.Tablas
                 txtNoControl.Enabled = true;
                 txtNombre.Enabled = true;
                 txtAppat.Enabled = true;
+                txtSemestre.Enabled = true;
                 nulo();
 
             }
@@ -182,14 +192,92 @@ namespace Asistencia.Tablas
 
 
         private void dgvBusquedaAl_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        { 
-            frmAlumno Alumnos = new frmAlumno(dgvBusquedaAl.CurrentRow.Cells[0].Value.ToString(), 
-                dgvBusquedaAl.CurrentRow.Cells[1].Value.ToString(), 
-                dgvBusquedaAl.CurrentRow.Cells[2].Value.ToString(), 
-                dgvBusquedaAl.CurrentRow.Cells[3].Value.ToString(), 
+        {
+            frmAlumno Alumnos = new frmAlumno(dgvBusquedaAl.CurrentRow.Cells[0].Value.ToString(),
+                dgvBusquedaAl.CurrentRow.Cells[1].Value.ToString(),
+                dgvBusquedaAl.CurrentRow.Cells[2].Value.ToString(),
+                dgvBusquedaAl.CurrentRow.Cells[3].Value.ToString(),
                 dgvBusquedaAl.CurrentRow.Cells[4].Value.ToString());
             Alumnos.ShowDialog();
         }
+
+        private void importarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.String path;
+            DialogResult dr = ofdImportar.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                path = ofdImportar.FileName;
+                ExcelPackage.License.SetNonCommercialPersonal("<Jorge>");
+                using (var package = new ExcelPackage(new FileInfo(path)))
+                {
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+                    int colcount = worksheet.Dimension.Columns;
+                    int rowCount = worksheet.Dimension.Rows;
+                    DataTable ds = new DataTable();
+                    for (int col = 1; col <= colcount; col++)
+                    {
+                        ds.Columns.Add(worksheet.Cells[1, col].Value.ToString());
+                    }
+                    for (int row = 2; row <= rowCount; row++)
+                    {
+                        DataRow dsNew = ds.NewRow();
+                        for (int col = 1; col <= colcount; col++)
+                        {
+                            dsNew[col - 1] = worksheet.Cells[row, col].Value.ToString();
+                        }
+                        ds.Rows.Add(dsNew);
+                        System.String comand = $"insert into Alumnos(Nocontrol,Nombre,Appat,Apmat,Semestre)" +
+                            $"values ('{dsNew.ItemArray[0]}','{dsNew.ItemArray[1]}','{dsNew.ItemArray[2]}','{dsNew.ItemArray[3]}',{dsNew.ItemArray[4]})";
+                        ct.ejecutarComando(comand);
+
+                    }
+                }
+
+            }
+
+
+        }
+        private int NumeroRandom()
+        {
+            Random rnd = new Random();
+            return rnd.Next(1, 10);
+        }
+
+        private void txtSemestre_TextChanged(object sender, EventArgs e)
+        {
+            if (txtSemestre.Text != "")
+            {
+
+
+                try
+                {
+                    ds = ct.ejecutar($"SELECT * from Alumnos " +
+                        $"where Apmat like '{txtApmat.Text}%'");
+                    if (ds != null)
+                    {
+                        dgvBusquedaAl.DataSource = ds.Tables[0];
+                    }
+                    txtNoControl.Enabled = false;
+                    txtNombre.Enabled = false;
+                    txtAppat.Enabled = false;
+                    txtApmat.Enabled = false;
+                }
+                catch (Exception ex)
+                { }
+            }
+            else
+            {
+                txtNoControl.Enabled = true;
+                txtNombre.Enabled = true;
+                txtAppat.Enabled = true;
+                txtApmat.Enabled = true;
+                nulo();
+
+            }
+
+        }
     }
+
 }
 

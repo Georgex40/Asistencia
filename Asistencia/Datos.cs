@@ -40,38 +40,51 @@ namespace Asistencia
                     Console.WriteLine(ex.Message);
                 }
             }
-            public DataSet ejecutar(string comando)
-            {
-                try
-                {
-                    Conectar();
-                    MySqlDataAdapter da = new MySqlDataAdapter(comando, conexion);
-                    DataSet ds = new DataSet();
-                    da.Fill(ds);
-                    return ds;
+        public DataSet ejecutar(string comando)
+        {
+            DataSet ds = new DataSet();
 
-                }
-                catch (Exception ex)
+            try
+            {
+                using (MySqlConnection conexion = new MySqlConnection(cadenaConexión))
                 {
-                    Console.WriteLine(ex.Message);
-                    return null;
+                    conexion.Open();
+
+                    using (MySqlDataAdapter da = new MySqlDataAdapter(comando, conexion))
+                    {
+                        da.Fill(ds);
+                    }
                 }
             }
-
-            public bool ejecutarComando(string comando)
+            catch (Exception ex)
             {
-                try
-                {
-                    Conectar();
-                    MySqlCommand cmd = new MySqlCommand(comando, conexion);
-                    cmd.ExecuteNonQuery();
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    return false;
-                }
+                Console.WriteLine(ex.Message);
             }
+
+            return ds;
+        }
+
+        public bool ejecutarComando(string comando)
+        {
+            try
+            {
+                using (MySqlConnection conexion = new MySqlConnection(cadenaConexión))
+                {
+                    conexion.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand(comando, conexion))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
     }
 }

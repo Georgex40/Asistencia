@@ -59,6 +59,7 @@
             dgvRegistroAs.Size = new Size(800, 421);
             dgvRegistroAs.TabIndex = 0;
             dgvRegistroAs.CellContentClick += dgvRegistros_CellContentClick;
+            dgvRegistroAs.CellDoubleClick += dgvRegistroAs_CellDoubleClick;
             // 
             // splitContainer1
             // 
@@ -96,14 +97,14 @@
             // nuevoToolStripMenuItem
             // 
             nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            nuevoToolStripMenuItem.Size = new Size(180, 22);
+            nuevoToolStripMenuItem.Size = new Size(152, 22);
             nuevoToolStripMenuItem.Text = "Nuevo";
             nuevoToolStripMenuItem.Click += nuevoToolStripMenuItem_Click;
             // 
             // volverAlMenuToolStripMenuItem
             // 
             volverAlMenuToolStripMenuItem.Name = "volverAlMenuToolStripMenuItem";
-            volverAlMenuToolStripMenuItem.Size = new Size(180, 22);
+            volverAlMenuToolStripMenuItem.Size = new Size(152, 22);
             volverAlMenuToolStripMenuItem.Text = "Volver al Menu";
             volverAlMenuToolStripMenuItem.Click += volverAlMenuToolStripMenuItem_Click_1;
             // 

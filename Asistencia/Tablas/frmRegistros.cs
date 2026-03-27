@@ -62,16 +62,29 @@ namespace Asistencia.Tablas
 
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             try
             {
                 bool NV = ct.ejecutarComando($"Insert into Registros(Fecha_Hora)" +
                      $"Values (CurDate())");
+                DataSet id = ct.ejecutar($"Select max(No_Registro) from Registros");
+
+                int registroId = Convert.ToInt32(id.Tables[0].Rows[0][0]);
+                if (registroId == 0) { MessageBox.Show("Error al obtener el ID del nuevo registro"); return; }
 
                 if (NV)
                 {
-                    DataSet NM = ct.ejecutar("SELECT MAX(Id) FROM Registros");
-                    frmAsistencia Asistencia = new frmAsistencia(NM);
-                    Asistencia.ShowDialog();
+                    bool ins = ct.ejecutarComando($"INSERT INTO Asistencia (No_Registro, No_Control, Nombre, Asistio)" +
+                        $"SELECT '{registroId}', NoControl, Nombre, 0 FROM Alumnos;");
+                    if (ins)
+                    {
+                        frmAsistencia Asistencia = new frmAsistencia(registroId);
+                        Asistencia.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error en la asistencia");
+                    }
                 }
                 else
                 {
@@ -81,6 +94,23 @@ namespace Asistencia.Tablas
             catch (Exception ex)
             {
                 MessageBox.Show("Error al crear nuevo registro: " + ex.Message);
+            }
+        }
+
+        private void dgvRegistroAs_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int registroId = Convert.ToInt32(dgvRegistroAs.Rows[e.RowIndex].Cells[0].Value);
+             
+
+
+                frmAsistencia Asistencia = new frmAsistencia(registroId);
+                Asistencia.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir el registro: " + ex.Message);
             }
         }
     }
